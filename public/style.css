@@ -1,0 +1,165 @@
+/* ---------------------------------------------
+   Login — token system
+   Color:   #14161A ink, #FAF9F6 paper, #F1EFE9 card,
+            #5B6EF5 focus/accent, #E4E2DA line
+   Type:    "Fraunces" (display, used only in the heading)
+            "Inter" (body / UI)
+   Layout:  centered card, generous whitespace, quiet edges
+   Signature: the heading sets a serif "W" with a subtle
+              ink-well underline flourish under "Welcome"
+--------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --ink: #14161a;
+    --ink-soft: #5a5d66;
+    --paper: #faf9f6;
+    --card: #ffffff;
+    --line: #e4e2da;
+    --accent: #5b6ef5;
+    --accent-ink: #ffffff;
+    --shadow: 0 1px 2px rgba(20, 22, 26, 0.04), 0 12px 32px -12px rgba(20, 22, 26, 0.16);
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(91, 110, 245, 0.05), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(91, 110, 245, 0.05), transparent 45%);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 380px;
+    padding: 48px 40px 40px;
+    text-align: center;
+    animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-card h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.login-card h1::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    bottom: 0;
+    width: 34px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: 0.85;
+}
+
+.login-card p {
+    margin-top: 18px;
+    margin-bottom: 32px;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 20px;
+    background: var(--card);
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.google-btn:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px -6px rgba(91, 110, 245, 0.35);
+    transform: translateY(-1px);
+}
+
+.google-btn:active {
+    transform: translateY(0);
+    background: #f5f5f3;
+}
+
+.google-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+    .login-card {
+        padding: 40px 28px 32px;
+        border-radius: 16px;
+    }
+
+    .login-card h1 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-card {
+        animation: none;
+    }
+
+    .google-btn {
+        transition: none;
+    }
+}
